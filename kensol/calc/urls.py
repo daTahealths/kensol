@@ -18,8 +18,8 @@ from django.urls import path
 from calc import views
 
 urlpatterns = [
-    path('request/', views.request),
-    path('response/', views.response),
-    path('calculate/', views.calculate),
+    path('ffuInput/', views.ffuInput),
+    path('ffuOutput/', views.ffuOutput),
+    path('ffuCalculate/', views.ffuCalculate),
     path('convert_to_pdf/', views.convert_to_pdf, name='convert_to_pdf'),
 ]

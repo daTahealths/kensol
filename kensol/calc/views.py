@@ -6,15 +6,15 @@ import pandas as pd
 RESOURCES = 'D:\\jango\\resources'
 
 # Create your views here.
-def request(request):
-    return render(request, 'request.html')
+def ffuInput(request):
+    return render(request, 'ffuInput.html')
 
-def response(request):
-    return render(response, 'response.html')
+def ffuOutput(request):
+    return render(request, 'ffuOutput.html')
 
-def calculate(request):
+def ffuCalculate(request):
     # 선택된 규격에 따른 단가들이 고정되는 부분
-    size = request.POST.get('size') # request.html에서 선택된 'size'를 가져옵니다.
+    size = request.POST.get('size') # ffuInput.html에서 선택된 'size'를 가져옵니다.
     quantity = 100
     unit_prices = []
 
@@ -34,7 +34,7 @@ def calculate(request):
     items = list(zip(names, unit_prices, totals))
     context = {'items': items, 'subtotal_unit': subtotal_unit, 'subtotal_totals': subtotal_totals}
     
-    return render(request, 'response.html', context)
+    return render(request, 'ffuOutput.html', context)
 
 # HTML to PDF   
 from django.http import HttpResponse
@@ -42,7 +42,7 @@ from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
 
-def html_to_pdf_view(request):
+def convert_to_pdf(request):
     # Render the HTML to a string
     template = render_to_string('your_template.html', context)
 

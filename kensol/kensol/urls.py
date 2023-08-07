@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from kensol import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('calc/', include('calc.urls')),
+    path('', views.home),
 ]
