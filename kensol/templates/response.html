@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>FFU 견적서</h2>
+    <table>
+        <tr>
+            <th>품명</th>
+            <th>수량</th>
+            <th>단가</th>
+            <th>합계</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.0 }}</td>
+            <td>100</td>
+            <td>{{ item.1 }}</td>
+            <td>{{ item.2 }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>UNIT 소계</td>
+            <td></td>
+            <td>{{ subtotal_unit }}</td>
+            <td>{{ subtotal_totals }}</td>
+        </tr>
+        <button onclick="goBack()">이전</button>
+        
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+            </script>
+        
+            <style>
+            .btn-container {
+                position: fixed;
+                right: 20px;
+                bottom: 20px;
+            }
+            .btn {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            </style>
+        
+            <div class="btn-container">
+                <button class="btn" onclick="window.location.href='{% url 'convert_to_pdf' %}';">저장</button>
+            </div>
+            </table>
+        </body>
+        </html>
+        

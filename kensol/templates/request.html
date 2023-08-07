@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>케이엔솔</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #ffuForm {
+            width: 10%;
+            margin: 0 auto;
+        }
+        .form-group {
+            font-size: 18pt;
+            margin-bottom: 8pt;
+        }
+        h1 {
+            font-size: 32pt;
+            margin-bottom: 18pt;
+        }
+        select, input {
+            font-size: 18pt;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .submit-button {
+            font-size: 18pt;
+            margin-top: 18pt;
+        }
+    </style>
+    <script>
+        function updateWindSpeed() {
+            var motorType = document.getElementById('motorType').value;
+            var windSpeed = document.getElementById('windSpeed');
+            windSpeed.innerHTML = '';
+
+            var options;
+            if (motorType === 'BLDC') {
+                options = ['0.7m/s', '0.6m/s', '0.5m/s', '0.45m/s', '0.4m/s', '0.35m/s', '0.3m/s', '0.25m/s', '0.2m/s'];
+            } else {
+                options = ['0.5m/s', '0.4m/s', '0.3m/s', '0.2m/s'];
+            }
+
+            options.forEach(function(option) {
+                var elem = document.createElement('option');
+                elem.value = option;
+                elem.innerHTML = option;
+                windSpeed.appendChild(elem);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>FFU 견적서</h1>
+    <form id="ffuForm" action="/calc/calculate/" method="post">
+        {% csrf_token %} 
+        <label>규격:
+            <select id="size" name="size">
+                <option value="1200*600">1200*600</option>
+                <option value="1200*1200">1200*1200</option>
+                <option value="1500*650">1500*650</option>
+                <option value="1500*1300">1500*1300</option>
+            </select>
+        </label><br><br>
+        <label>모터 종류:
+            <select id="motorType" name="motorType" onchange="updateWindSpeed()">
+                <option value="BLDC">BLDC</option>
+                <option value="AC">AC</option>
+            </select>
+        </label><br><br>
+        <label>풍량(풍속):
+            <select id="windSpeed" name="windSpeed"></select>
+        </label><br><br>
+        <label>전체 정압:
+            <input type="text" id="pressure" name="pressure" autocomplete="off" />
+        </label><br><br>
+        <label>소비 전력:
+            <input type="text" id="powerConsumption" name="powerConsumption" autocomplete="off" />
+        </label><br><br>
+        <label>제어기:
+            <input type="text" id="controller" name="controller" autocomplete="off" />
+        </label><br><br>
+        <input type="submit" value="입력" style="align-self: flex-start;">
+    </form>
+    <script>
+        // 페이지 로딩 시 모터 종류에 따른 풍량 옵션을 초기화합니다.
+        updateWindSpeed();
+    </script>
+</body>
+</html>
+
