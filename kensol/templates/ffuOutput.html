@@ -1,37 +1,10 @@
 <!DOCTYPE html>
-<html>
-<body>
-    <h2>FFU 견적서</h2>
-    <table>
-        <tr>
-            <th>품명</th>
-            <th>수량</th>
-            <th>단가</th>
-            <th>합계</th>
-        </tr>
-        {% for item in items %}
-        <tr>
-            <td>{{ item.0 }}</td>
-            <td>100</td>
-            <td>{{ item.1 }}</td>
-            <td>{{ item.2 }}</td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td>UNIT 소계</td>
-            <td></td>
-            <td>{{ subtotal_unit }}</td>
-            <td>{{ subtotal_totals }}</td>
-        </tr>
-        <button onclick="goBack()">이전</button>
-        
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-            </script>
-        
-            <style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FFU 견적서</title>
+        <style>
             .btn-container {
                 position: fixed;
                 right: 20px;
@@ -45,12 +18,50 @@
                 border-radius: 5px;
                 cursor: pointer;
             }
-            </style>
-        
-            <div class="btn-container">
-                <button class="btn" onclick="window.location.href='{% url 'convert_to_pdf' %}';">저장</button>
-            </div>
-            </table>
-        </body>
-        </html>
+        </style>
+
+    </head>
+    <body>
+        <h2>FFU 견적서</h2>
+        <table>
+            <tr>
+                <th>품명</th>
+                <th>수량</th>
+                <th>단가</th>
+                <th>합계</th>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.0 }}</td>
+                <td>100</td>
+                <td>{{ item.1 }}</td>
+                <td>{{ item.2 }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>UNIT 소계</td>
+                <td></td>
+                <td>{{ subtotal_unit }}</td>
+                <td>{{ subtotal_totals }}</td>
+            </tr>
+            <button onclick="goBack()">이전</button>
+            
+            <form action="{% url 'convert_to_pdf' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="size" value="{{ size }}"> 
+                <!-- 여기서 size는 ffuCalculate에서 context로 전달한 값입니다. -->
+            
+                <div class="btn-container">
+                    <button class="btn" type="submit">저장</button>
+                </div>
+            </form>            
+        </table>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
+</html>
         
