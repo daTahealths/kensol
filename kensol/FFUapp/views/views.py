@@ -6,7 +6,7 @@ import tempfile
 from django.views.decorators.http import require_POST
 
 # 필요한 다른 import문들
-from calc.models import Estimate
+from FFUapp.models.models import Estimate
 import os
 import pandas as pd
 
@@ -29,15 +29,15 @@ def get_context_from_size(size):
     return context
 
 def ffuInput(request):
-    return render(request, 'ffuInput.html')
+    return render(request, 'FFUInput.html')
 
 def ffuOutput(request):
-    return render(request, 'ffuOutput.html')
+    return render(request, 'FFUOutput.html')
 
 def ffuCalculate(request):
     size = request.POST.get('size')
     context = get_context_from_size(size)
-    return render(request, 'ffuOutput.html', context)
+    return render(request, 'FFUOutput.html', context)
 
 # To do list : pdf변환 permission error
 @require_POST
