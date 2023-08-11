@@ -52,9 +52,9 @@
         }
     </script>
 </head>
-<body>
+<body>  
     <h1>FFU 견적서</h1>
-    <form id="ffuForm" action="/calc/ffuCalculate/" method="post">
+    <form id="ffuForm" action="/ffu/ffuCalculate/" method="post">
         {% csrf_token %} 
         <label>규격:
             <select id="size" name="size">
@@ -90,4 +90,3 @@
     </script>
 </body>
 </html>
-

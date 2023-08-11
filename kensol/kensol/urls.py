@@ -21,6 +21,7 @@ from kensol import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('calc/', include('calc.urls')),
+    #path('calc/', include('calc.urls')),
+    path('ffu/', include('FFUapp.urls')),     # 'ffu/' : url 경로 | # 'ffuapp.urls' : ffuapp 앱의 urls.py 파일
     path('', views.home),
 ]

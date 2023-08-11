@@ -1,5 +1,6 @@
 from django.db import models
 
+## 자재비 산출
 # 원자재
 class RawMaterial(models.Model):
     quality = models.CharField(max_length = 50)     # 재질
@@ -120,6 +121,3 @@ class Option(models.Model):
                                 related_name = 'option',
                                 on_delete = models.SET_NULL,
                                 null = True)
-
-# -----------------------------------------------------------------------------------------
-
