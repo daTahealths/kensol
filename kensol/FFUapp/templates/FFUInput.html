@@ -54,8 +54,17 @@
 </head>
 <body>  
     <h1>FFU 견적서</h1>
-    <form id="ffuForm" action="/ffu/ffuCalculate/" method="post">
+    <form id="ffuForm" action="/ffu/FFUInput/" method="post">
         {% csrf_token %} 
+        <label>사양:
+            <select id="spec" name="spec">
+                <option value="일반사양">일반사양</option>
+                <option value="고사양">고사양</option>
+            </select>
+        </label><br><br>
+        <label>수량:
+            <input type="text" id="quantity" name="quantity" autocomplete="off" />
+        </label><br><br>
         <label>규격:
             <select id="size" name="size">
                 <option value="1200*600">1200*600</option>

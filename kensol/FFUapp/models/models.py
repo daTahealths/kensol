@@ -1,4 +1,4 @@
-from django.db import models
+""" from django.db import models
 
 ## 자재비 산출
 # 원자재
@@ -120,4 +120,4 @@ class Option(models.Model):
     paint_cost = models.OneToOneField(PaintCost,                              # 도장비
                                 related_name = 'option',
                                 on_delete = models.SET_NULL,
-                                null = True)
+                                null = True) """
