@@ -14,11 +14,11 @@ def calculate_paint_price(size, spec):
     # 해당 모델에서 size로 데이터 검색
     paints = model.objects.filter(size=size)
 
-    total_paint_cost = 0  # <-- 변수 이름을 변경했습니다.
+    total_paint_cost = 0  
     for paint in paints:
-        square_meter = ((paint.figure_width * paint.figure_length)/1000000)*2
+        square_meter = ((paint.figure_width * paint.figure_length)/1000000) * 2 * paint.necessary_quantity
         paint_cost = square_meter * paint.won_per_meter    
 
-        total_paint_cost += paint_cost  # <-- 변수 이름을 변경했습니다.
+        total_paint_cost += paint_cost  
 
-    return total_paint_cost  # <-- 변수 이름을 변경했습니다.
+    return total_paint_cost

@@ -7,6 +7,7 @@ class GenPaint(models.Model):
     figure_width = models.FloatField()                          # 전개 가로
     figure_length = models.FloatField()                         # 전개 세로
     won_per_meter = models.IntegerField()                       # 원/m^2
+    necessary_quantity = models.IntegerField()                  # 자재 필요수량
 
     class Meta:
         managed = False
@@ -20,7 +21,8 @@ class HighPaint(models.Model):
     figure_width = models.FloatField()                          # 전개 가로
     figure_length = models.FloatField()                         # 전개 세로
     won_per_meter = models.IntegerField()                       # 원/m^2
-
+    necessary_quantity = models.IntegerField()                  # 자재 필요수량
+    
     class Meta:
         managed = False
         db_table = 'high_paint'

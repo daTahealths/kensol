@@ -141,6 +141,7 @@ class GenMaterialcost(models.Model):
     rawmaterial_density = models.FloatField()
     manufacture_quantity = models.IntegerField()
     necessary_quantity = models.IntegerField()
+    won_per_kg = models.IntegerField()
 
     class Meta:
         managed = False
@@ -150,7 +151,7 @@ class GenMaterialcost(models.Model):
 
 class GenNct(models.Model):
     size = models.CharField(primary_key=True, max_length=16)
-    nct_price = models.IntegerField()
+    nct_price = models.FloatField()
 
     class Meta:
         managed = False
@@ -173,6 +174,7 @@ class GenPaint(models.Model):
     figure_width = models.FloatField()
     figure_length = models.FloatField()
     won_per_meter = models.IntegerField()
+    necessary_quantity = models.IntegerField()
 
     class Meta:
         managed = False
@@ -211,6 +213,7 @@ class HighMaterialcost(models.Model):
     rawmaterial_density = models.FloatField()
     manufacture_quantity = models.IntegerField()
     necessary_quantity = models.IntegerField()
+    won_per_kg = models.IntegerField()
 
     class Meta:
         managed = False
@@ -220,7 +223,7 @@ class HighMaterialcost(models.Model):
 
 class HighNct(models.Model):
     size = models.CharField(primary_key=True, max_length=16)
-    nct_price = models.IntegerField()
+    nct_price = models.FloatField()
 
     class Meta:
         managed = False
@@ -243,6 +246,7 @@ class HighPaint(models.Model):
     figure_width = models.FloatField()
     figure_length = models.FloatField()
     won_per_meter = models.IntegerField()
+    necessary_quantity = models.IntegerField()
 
     class Meta:
         managed = False

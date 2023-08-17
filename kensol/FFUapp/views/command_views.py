@@ -44,7 +44,12 @@ def ffuInput(request):
     if request.method == 'POST':
         size = request.POST.get('size')
         spec = request.POST.get('spec')
-        quantity = int(request.POST.get('quantity', 1))
+        
+        quantity_str = request.POST.get('quantity', '1')
+        try:
+            quantity = int(quantity_str)
+        except ValueError:
+            quantity = 1
 
         names = ['자재비 (AL, SPCC 외)', '도장비', 'NCT 판금 가공비', 'MOTOR & 컨트롤러', 'FAN', 'BELLMOUTH (보호망포함)', '볼트', '포장용 잡자재', '조립인건비', '포장팔렛트', '운반비']
 
