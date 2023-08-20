@@ -6,15 +6,16 @@
     <title>케이엔솔</title>
     <style>
         body {
-            text-align: center;
+            text-align: left;
+            padding-left: 15px;
         }
         #ffuForm {
-            width: 10%;
+            width: 30%;
             margin: 0 auto;
         }
         .form-group {
             font-size: 18pt;
-            margin-bottom: 8pt;
+            margin-bottom: 12pt;
         }
         h1 {
             font-size: 32pt;
@@ -31,71 +32,110 @@
         }
     </style>
     <script>
-        function updateWindSpeed() {
-            var motorType = document.getElementById('motorType').value;
-            var windSpeed = document.getElementById('windSpeed');
-            windSpeed.innerHTML = '';
-
-            var options;
-            if (motorType === 'BLDC') {
-                options = ['0.7m/s', '0.6m/s', '0.5m/s', '0.45m/s', '0.4m/s', '0.35m/s', '0.3m/s', '0.25m/s', '0.2m/s'];
-            } else {
-                options = ['0.5m/s', '0.4m/s', '0.3m/s', '0.2m/s'];
-            }
-
-            options.forEach(function(option) {
-                var elem = document.createElement('option');
-                elem.value = option;
-                elem.innerHTML = option;
-                windSpeed.appendChild(elem);
-            });
+        function goBack() {
+            window.history.back();
         }
     </script>
 </head>
-<body>  
-    <h1>FFU 견적서</h1>
+<body>
+    <h1>FFU 견적서 입력</h1>
     <form id="ffuForm" action="/ffu/FFUInput/" method="post">
-        {% csrf_token %} 
-        <label>사양:
+        {% csrf_token %}
+
+        <label for="businessOwner">사업주:
+            <input type="text" id="businessOwner" name="businessOwner" autocomplete="off" />
+        </label><br><br>
+
+        <label for="location">지역:
+            <select id="location" name="location">
+                <option value="삼성디스플레이">삼성디스플레이</option>
+                <option value="삼성전자 천안">삼성전자 천안</option>
+                <option value="삼성전자 평택">삼성전자 평택</option>
+                <option value="삼성전자 화성, 기흥">삼성전자 화성, 기흥</option>
+                <option value="천안">천안</option>
+                <option value="탕정">탕정</option>
+                <option value="음성,청주,오창">음성,청주,오창</option>
+                <option value="평택">평택</option>
+                <option value="화성, 동탄">화성, 동탄</option>
+                <option value="기흥">기흥</option>
+                <option value="안산">안산</option>
+                <option value="이천">이천</option>
+                <option value="인천 영정도">인천 영정도</option>
+                <option value="파주">파주</option>
+                <option value="구미">구미</option>
+                <option value="부산">부산</option>
+
+            </select>
+        </label><br><br>
+
+        <label for="size">규격:
+            <select id="size" name="size">
+                <option value="1200*600">1200*600</option>
+                <option value="1200*1200">1200*1200</option>
+                <option value="1500*1300">1500*1300</option>
+                <option value="1500*650">1500*650</option>
+                <option value="1500*1320">1500*1320</option>
+                <option value="1320*750">1320*750</option>
+            </select>
+        </label><br><br>
+
+        <label for="motorManufacturer">모터 제조사 선택:
+            <select id="motorManufacturer" name="motorManufacturer">
+                <option value="블루코드">블루코드</option>
+                <option value="시스웍">시스웍</option>
+            </select>
+        </label><br><br>
+
+        <label for="motorType">모터 종류 선택:
+            <select id="motorType" name="motorType">
+                <option value="BLDC">BLDC</option>
+                <option value="AC">AC</option>
+            </select>
+        </label><br><br>
+
+        <label for="motorW">모터 W 선택:
+            <select id="motorW" name="motorW">
+                <option value="300W">300W</option>
+                <option value="400W">400W</option>
+                <option value="400W SDC">400W SDC</option>
+                <option value="650W 내장형">650W 내장형</option>
+                <option value="650W 외장형">650W 외장형</option>
+            </select>
+        </label><br><br>
+
+        <label for="pressure">기외 정압 (mmaq):
+            <input type="number" step="0.01" id="pressure" name="pressure" autocomplete="off" />
+        </label><br><br>
+
+        <label for="filterPressure">필터 차압 (mmaq):
+            <input type="number" step="0.01" id="filterPressure" name="filterPressure" autocomplete="off" />
+        </label><br><br>
+
+        <label for="spec">사양:
             <select id="spec" name="spec">
                 <option value="일반사양">일반사양</option>
                 <option value="고사양">고사양</option>
             </select>
         </label><br><br>
-        <label>수량:
-            <input type="text" id="quantity" name="quantity" autocomplete="off" />
+
+        <label for="windSpeedMS">풍량/풍속 (m/s):
+            <input type="number" step="0.01" id="windSpeedMS" name="windSpeedMS" autocomplete="off" />
         </label><br><br>
-        <label>규격:
-            <select id="size" name="size">
-                <option value="1200*600">1200*600</option>
-                <option value="1200*1200">1200*1200</option>
-                <option value="1500*650">1500*650</option>
-                <option value="1500*1300">1500*1300</option>
-            </select>
+
+        <label for="windSpeedCMM">풍량/풍속 (cmm):
+            <input type="number" step="0.01" id="windSpeedCMM" name="windSpeedCMM" autocomplete="off" />
         </label><br><br>
-        <label>모터 종류:
-            <select id="motorType" name="motorType" onchange="updateWindSpeed()">
-                <option value="BLDC">BLDC</option>
-                <option value="AC">AC</option>
-            </select>
+
+        <label for="efficiency">효율 (%):
+            <input type="number" step="0.01" id="efficiency" name="efficiency" autocomplete="off" />
         </label><br><br>
-        <label>풍량(풍속):
-            <select id="windSpeed" name="windSpeed"></select>
+
+        <label for="quantity">수량:
+            <input type="number" id="quantity" name="quantity" autocomplete="off" />
         </label><br><br>
-        <label>전체 정압:
-            <input type="text" id="pressure" name="pressure" autocomplete="off" />
-        </label><br><br>
-        <label>소비 전력:
-            <input type="text" id="powerConsumption" name="powerConsumption" autocomplete="off" />
-        </label><br><br>
-        <label>제어기:
-            <input type="text" id="controller" name="controller" autocomplete="off" />
-        </label><br><br>
-        <input type="submit" value="입력" style="align-self: flex-start;">
+
+        <button type="button" onclick="goBack()">이전</button>
+        <input type="submit" value="입력">
     </form>
-    <script>
-        // 페이지 로딩 시 모터 종류에 따른 풍량 옵션을 초기화합니다.
-        updateWindSpeed();
-    </script>
 </body>
 </html>
