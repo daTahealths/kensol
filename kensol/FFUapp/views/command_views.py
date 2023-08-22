@@ -7,39 +7,51 @@ from .MaterialCost_views import calculate_materialcost_price
 from .Paint_views import calculate_paint_price
 
 # 1. 흰색글자로 바꾸기 2. kwargs 대체 방법이나 문제해결 3. 조립인건비 pass문제 해결
+자재비 = "자재비 (AL, SPCC 외)"
+도장비 = "도장비"
+NCT_가공비 = "NCT 가공비"
+MOTOR = "MOTOR"
+컨트롤러 = "컨트롤러"
+FAN = "FAN"
+BELLMOUTH = "BELLMOUTH (보호망포함)"
+볼트 = "볼트&리벳"
+포장용잡자재 = "포장용 잡자재"
+조립인건비 = "조립인건비"
 포장팔렛트 = "포장팔렛트"
-NCT_판금_가공비 = "NCT 판금 가공비"
+운반비 = "운반비"
+
+일반사양 = "일반사양"
+고사양 = "고사양"
 
 def get_price_for_item(item_name, size, spec, **kwargs):
-    if item_name == "조립인건비":
-        # 예: item = Assembly.objects.get(name=size)
-        # return item.assembly_price
-        pass  # 여기에 실제 구현을 추가하세요.
+    if item_name == 조립인건비:
+        return calculate_assembly_price(size, spec)
+
         
     elif item_name == 포장팔렛트:
         return calculate_pack_price(size, spec)
 
-    elif item_name == NCT_판금_가공비:
+    elif item_name == NCT_가공비:
         return calculate_nct_price(size, spec)
 
-    elif item_name == "볼트":
+    elif item_name == 볼트:
         return calculate_volt_price(size, spec)
 
-    elif item_name == "자재비 (AL, SPCC 외)":
+    elif item_name == 자재비:
         return calculate_materialcost_price(size, spec)
 
-    elif item_name == "도장비":
+    elif item_name == 도장비:
         return calculate_paint_price(size, spec)
         
-    elif item_name == "MOTOR & 컨트롤러":
+    elif item_name == MOTOR_컨트롤러:
         motor_type = kwargs.get('motor_type', None)
         return motor_type
         
-    elif item_name == "FAN":
+    elif item_name == FAN:
         fan_speed = kwargs.get('fan_speed', None)
         return fan_speed
         
-    elif item_name == "BELLMOUTH (보호망포함)":
+    elif item_name == BELLMOUTH:
         material = kwargs.get('material', None)
         return material
 
@@ -57,7 +69,7 @@ def ffuInput(request):
         except ValueError:
             quantity = 1
 
-        names = ['자재비 (AL, SPCC 외)', '도장비', NCT_판금_가공비, 'MOTOR & 컨트롤러', 'FAN', 'BELLMOUTH (보호망포함)', '볼트', '포장용 잡자재', '조립인건비', 포장팔렛트, '운반비']
+        names = [자재비, 도장비, NCT_가공비, MOTOR, 컨트롤러, FAN, BELLMOUTH, 볼트, 포장용잡자재, 조립인건비, 포장팔렛트, 운반비]
 
         items = []
         for name in names:

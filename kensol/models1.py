@@ -132,6 +132,27 @@ class GenAssembly(models.Model):
         unique_together = (('size', 'assembly_price'),)
 
 
+class GenController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    motor_company = models.CharField(max_length=32)
+    watt = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'gen_controller'
+        unique_together = (('size', 'motor_company'),)
+
+
+class GenJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'gen_jab'
+
+
 class GenMaterialcost(models.Model):
     item = models.CharField(primary_key=True, max_length=32)  # The composite primary key (item, size) found, that is not supported. The first column is selected.
     size = models.CharField(max_length=16)
@@ -149,9 +170,21 @@ class GenMaterialcost(models.Model):
         unique_together = (('item', 'size'),)
 
 
+class GenMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    motor_company = models.CharField(max_length=32)
+    watt = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'gen_motor'
+        unique_together = (('size', 'motor_company'),)
+
+
 class GenNct(models.Model):
     size = models.CharField(primary_key=True, max_length=16)
-    nct_price = models.FloatField()
+    nct_price = models.IntegerField()
 
     class Meta:
         managed = False
@@ -204,6 +237,27 @@ class HighAssembly(models.Model):
         unique_together = (('size', 'assembly_price'),)
 
 
+class HighController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    motor_company = models.CharField(max_length=32)
+    watt = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'high_controller'
+        unique_together = (('size', 'motor_company'),)
+
+
+class HighJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'high_jab'
+
+
 class HighMaterialcost(models.Model):
     item = models.CharField(primary_key=True, max_length=32)  # The composite primary key (item, size) found, that is not supported. The first column is selected.
     size = models.CharField(max_length=16)
@@ -221,9 +275,21 @@ class HighMaterialcost(models.Model):
         unique_together = (('item', 'size'),)
 
 
+class HighMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company, watt) found, that is not supported. The first column is selected.
+    motor_company = models.CharField(max_length=32)
+    watt = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'high_motor'
+        unique_together = (('size', 'motor_company', 'watt'),)
+
+
 class HighNct(models.Model):
     size = models.CharField(primary_key=True, max_length=16)
-    nct_price = models.FloatField()
+    nct_price = models.IntegerField()
 
     class Meta:
         managed = False
