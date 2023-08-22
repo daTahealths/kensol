@@ -5,7 +5,7 @@ class GenJab(models.Model):
     jab_price = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_jab'
 
 class HighJab(models.Model):
@@ -13,5 +13,5 @@ class HighJab(models.Model):
     jab_price = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_jab'

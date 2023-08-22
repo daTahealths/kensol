@@ -134,9 +134,10 @@ class GenAssembly(models.Model):
 
 class GenController(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
     motor_company = models.CharField(max_length=32)
     watt = models.CharField(max_length=32)
-    motor_price = models.IntegerField()
+    controller_price = models.IntegerField()
 
     class Meta:
         managed = False
@@ -172,6 +173,7 @@ class GenMaterialcost(models.Model):
 
 class GenMotor(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
     motor_company = models.CharField(max_length=32)
     watt = models.CharField(max_length=32)
     motor_price = models.IntegerField()
@@ -218,8 +220,8 @@ class GenPaint(models.Model):
 class GenVolt(models.Model):
     size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
     volt_name = models.CharField(max_length=50)
-    volt_price = models.IntegerField()
-    volt_count = models.IntegerField()
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
 
     class Meta:
         managed = False
@@ -239,9 +241,10 @@ class HighAssembly(models.Model):
 
 class HighController(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
     motor_company = models.CharField(max_length=32)
     watt = models.CharField(max_length=32)
-    motor_price = models.IntegerField()
+    controller_price = models.IntegerField()
 
     class Meta:
         managed = False
@@ -277,6 +280,7 @@ class HighMaterialcost(models.Model):
 
 class HighMotor(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company, watt) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
     motor_company = models.CharField(max_length=32)
     watt = models.CharField(max_length=32)
     motor_price = models.IntegerField()
@@ -323,8 +327,8 @@ class HighPaint(models.Model):
 class HighVolt(models.Model):
     size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
     volt_name = models.CharField(max_length=50)
-    volt_price = models.IntegerField()
-    volt_count = models.IntegerField()
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
 
     class Meta:
         managed = False

@@ -14,7 +14,7 @@ class GenMaterialcost(models.Model):
     won_per_kg = models.IntegerField()                          # 원/kg
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_materialcost'
         unique_together = (('item', 'size'),)
 
@@ -31,7 +31,7 @@ class HighMaterialcost(models.Model):
     won_per_kg = models.IntegerField()                          # 원/kg
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_materialcost'
         unique_together = (('item', 'size'),)
 

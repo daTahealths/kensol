@@ -7,7 +7,7 @@ class GenAssembly(models.Model):
     size = models.CharField(primary_key=True, max_length=16)        # 규격  
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_assembly'
         unique_together = (('size', 'assembly_price'),)
 
@@ -18,6 +18,6 @@ class HighAssembly(models.Model):
     size = models.CharField(primary_key=True, max_length=16)        # 규격  
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_assembly'
         unique_together = (('size', 'assembly_price'),)

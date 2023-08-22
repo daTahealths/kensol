@@ -7,7 +7,7 @@ class GenPack(models.Model):
     size = models.CharField(primary_key=True, max_length=16)        # 규격
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_pack'
         unique_together = (('size', 'pack_price'),)
 
@@ -18,6 +18,6 @@ class HighPack(models.Model):
     size = models.CharField(primary_key=True, max_length=16)        # 규격 
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_pack'
         unique_together = (('size', 'pack_price'),)

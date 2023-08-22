@@ -8,7 +8,7 @@ class GenVolt(models.Model):
     volt_count = models.IntegerField()                          # 볼트_수량
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_volt'
         unique_together = (('size', 'volt_name'),)
 
@@ -20,6 +20,6 @@ class HighVolt(models.Model):
     volt_count = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_volt'
         unique_together = (('size', 'volt_name'),)

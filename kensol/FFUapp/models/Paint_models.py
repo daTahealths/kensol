@@ -10,7 +10,7 @@ class GenPaint(models.Model):
     necessary_quantity = models.IntegerField()                  # 자재 필요수량
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_paint'
         unique_together = (('item', 'size'),)
 
@@ -24,6 +24,6 @@ class HighPaint(models.Model):
     necessary_quantity = models.IntegerField()                  # 자재 필요수량
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_paint'
         unique_together = (('item', 'size'),)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from FFUapp.models.Jab_models import GenJab, HighJab
 
-def calculate_nct_price(size, spec):
+def calculate_jab_price(size, spec):
     """
     주어진 size와 spec에 따라 조립 가격을 반환합니다.
     """ 
@@ -14,8 +14,8 @@ def calculate_nct_price(size, spec):
         return 0  # 0 또는 적절한 오류 메시지를 반환
 
     # 해당 모델에서 size로 데이터 검색  ## first() 찾아보기!
-    nct = model.objects.filter(size=size).first()
-    if nct:
-        return nct.nct_price
+    jab = model.objects.filter(size=size).first()
+    if jab:
+        return jab.jab_price
     else:
         return 0  

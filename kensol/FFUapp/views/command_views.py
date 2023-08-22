@@ -5,6 +5,9 @@ from .NCT_views import calculate_nct_price
 from .Volt_views import calculate_volt_price
 from .MaterialCost_views import calculate_materialcost_price
 from .Paint_views import calculate_paint_price
+from .Jab_views import calculate_jab_price
+from .Motor_views import calculate_motor_price
+from .Controller_views import calculate_controller_price
 
 # 1. 흰색글자로 바꾸기 2. kwargs 대체 방법이나 문제해결 3. 조립인건비 pass문제 해결
 자재비 = "자재비 (AL, SPCC 외)"
@@ -23,11 +26,10 @@ BELLMOUTH = "BELLMOUTH (보호망포함)"
 일반사양 = "일반사양"
 고사양 = "고사양"
 
-def get_price_for_item(item_name, size, spec, **kwargs):
+def get_price_for_item(item_name, size, spec, motortype=None, motor_company=None, watt=None, **kwargs):
     if item_name == 조립인건비:
         return calculate_assembly_price(size, spec)
 
-        
     elif item_name == 포장팔렛트:
         return calculate_pack_price(size, spec)
 
@@ -42,11 +44,16 @@ def get_price_for_item(item_name, size, spec, **kwargs):
 
     elif item_name == 도장비:
         return calculate_paint_price(size, spec)
+
+    elif item_name == 포장용잡자재:
+        return calculate_jab_price(size, spec)
         
-    elif item_name == MOTOR_컨트롤러:
-        motor_type = kwargs.get('motor_type', None)
-        return motor_type
-        
+    elif item_name == MOTOR:
+        return calculate_motor_price(size, spec, motortype=motortype, motor_company=motor_company, watt=watt)
+    
+    elif item_name == 컨트롤러:
+        return calculate_controller_price(size, spec, motortype=motortype, motor_company=motor_company, watt=watt)
+
     elif item_name == FAN:
         fan_speed = kwargs.get('fan_speed', None)
         return fan_speed
@@ -62,6 +69,9 @@ def ffuInput(request):
     if request.method == 'POST':
         size = request.POST.get('size')
         spec = request.POST.get('spec')
+        motortype = request.POST.get('motortype')
+        motor_company = request.POST.get('motor_company')
+        watt = request.POST.get('watt')
         
         quantity_str = request.POST.get('quantity', '1')
         try:
@@ -73,17 +83,12 @@ def ffuInput(request):
 
         items = []
         for name in names:
-            # if name == '조립인건비':
-            #     unit_price = calculate_assembly_price(size, spec)
-            # elif name == '포장팔렛트':
-            #     unit_price = calculate_pack_price(size, spec)
-            # elif name == 'NCT 판금 가공비':
-            #     unit_price = calculate_nct_price(size, spec)
-            # else:
-            #     unit_price = get_price_for_item(name, size, spec) or 0
-            
+
             try:
-                unit_price = get_price_for_item(name, size, spec)
+                if name in [MOTOR, 컨트롤러]:
+                    unit_price = get_price_for_item(name, size, spec, motortype=motortype, motor_company=motor_company, watt=watt)
+                else:
+                    unit_price = get_price_for_item(name, size, spec)
 
                 total_price = unit_price * quantity
                 items.append((name, quantity, unit_price, total_price))

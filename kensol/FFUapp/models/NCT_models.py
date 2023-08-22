@@ -6,7 +6,7 @@ class GenNct(models.Model):
     nct_price = models.IntegerField()                                 # NCT 판금 가공비
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'gen_nct'
 
 
@@ -16,5 +16,5 @@ class HighNct(models.Model):
     nct_price = models.IntegerField()                                 # NCT 판금 가공비 
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'high_nct'
