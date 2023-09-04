@@ -132,6 +132,18 @@ class GenAssembly(models.Model):
         unique_together = (('size', 'assembly_price'),)
 
 
+class GenBellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'gen_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
 class GenController(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
     motortype = models.CharField(max_length=16)
@@ -143,6 +155,18 @@ class GenController(models.Model):
         managed = False
         db_table = 'gen_controller'
         unique_together = (('size', 'motor_company'),)
+
+
+class GenFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'gen_fan'
+        unique_together = (('size', 'motortype'),)
 
 
 class GenJab(models.Model):
@@ -239,6 +263,18 @@ class HighAssembly(models.Model):
         unique_together = (('size', 'assembly_price'),)
 
 
+class HighBellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'high_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
 class HighController(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
     motortype = models.CharField(max_length=16)
@@ -250,6 +286,18 @@ class HighController(models.Model):
         managed = False
         db_table = 'high_controller'
         unique_together = (('size', 'motor_company'),)
+
+
+class HighFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'high_fan'
+        unique_together = (('size', 'motortype'),)
 
 
 class HighJab(models.Model):
@@ -334,3 +382,25 @@ class HighVolt(models.Model):
         managed = False
         db_table = 'high_volt'
         unique_together = (('size', 'volt_name'),)
+
+
+class LoadQuantity(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, ea) found, that is not supported. The first column is selected.
+    ea = models.IntegerField()
+    carsize = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'load_quantity'
+        unique_together = (('size', 'ea'),)
+
+
+class LocationMovecost(models.Model):
+    location = models.CharField(primary_key=True, max_length=50)  # The composite primary key (location, carsize) found, that is not supported. The first column is selected.
+    carsize = models.CharField(max_length=50)
+    move_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'location_movecost'
+        unique_together = (('location', 'carsize'),)

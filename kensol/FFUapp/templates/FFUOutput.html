@@ -1,58 +1,258 @@
+{% load static %}
 {% load humanize %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FFU 견적서</title>
-    <style>
-        .btn-container {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>FFU Quotation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C500%2C700"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C500%2C600%2C700"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans%3A600"/>
+  <link rel="stylesheet" href="{% static 'css/output2.css' %}"/>
 </head>
 <body>
-    <h2>FFU 견적서</h2>
-    <table>
-        <tr>
-            <th>품명</th>
-            <th>수량</th>
-            <th>단가</th>
-            <th>합계</th>
-        </tr>
-        {% for item in items %}
-        <tr>
-            <td>{{ item.0 }}</td>
-            <td>{{ item.1 }}</td>
-            <td>{{ item.2|floatformat:"0"|intcomma }}</td>
-            <td>{{ item.3|floatformat:"0"|intcomma }}</td>
+<div class="desktop-5-uEH">
+  <img class="icon-ionicons-outline-arrow-back-outline-zFj" src="{% static 'images/icon-ionicons-outline-arrow-back-outline-y2H.png' %}" onclick="goBack()"/>
+  <div class="auto-group-q2iv-52H">
+    <div class="auto-group-kua1-z9F">
+      <div class="frame-WNV">
+        <div class="auto-group-nxah-S1F">
+          <p class="quotation--wyb">
+          Quotation |
+          <br/>
+          
+          </p>
+          <p class="sk--3mj">
+          {{ businessOwner }}
+          {% comment %} 현장명 {% endcomment %}
+          <br/>
+          
+          </p>
+        </div>
+      </div>
+      <div class="auto-group-mceu-gph">
+        <div class="auto-group-jusk-QVo">
+          <p class="ffu-info-XqK">FFU info</p>
+          <p class="bldc-FWR">
+          유형 : BLDC
+          {% comment %} 모터 종류 {% endcomment %}
+          <br/>
+          
+          <br/>
+          
+          <br/>
+          
+          <br/>
+          
+          </p>
+          <p class="transportation-aHo">Transportation</p>
+        </div>
+        <div class="auto-group-rycy-i97">
+          <p class="ton--j4D">
+          1 ton :  
+          <br/>
+          
+          <br/>
+          
+          <br/>
+          
+          <br/>
+          
+          </p>
+          <p class="item-10--EFs">{{ load_data.one_carnum }} 대</p>
+          {% comment %} 1톤 대수 {% endcomment %}
+        </div>
+      </div>
+    </div>
+    <div class="auto-group-8nbk-iB3">
+      <div class="auto-group-cifb-pzm">
+        <p class="unit-total-nAu">Direct Cost</p>
+        <p class="item-500000000-Wsb">￦500,000,000</p>
+        {% comment %} 직접비 총계 {% endcomment %}
+        
+      </div>
+      <div class="auto-group-fupt-dhK">
+        <p class="filter-total-Byj">Indirect Cost</p>
+        <p class="item-6280000000-iim">￦6,280,000,000</p>
+        {% comment %} 간접비 통계 {% endcomment %}
+      </div>
+    </div>
+  </div>
+  <div class="auto-group-ajyb-nCq">
+    <div class="auto-group-av5b-iMP">
+      <p class="item--ekq">지역 : {{ location }}</p>
+      {% comment %} 지역 {% endcomment %}
+      <p class="item-12001200-xmX">규격 : 1200*1200</p>
+      {% comment %} 규격 {% endcomment %}
+    </div>
+    <div class="auto-group-ppdf-stV">
+      <div class="auto-group-an9p-dMs">
+        <p class="ton--ZFX">5 ton :</p>
+        <p class="item-4--Vey">{{ load_data.five_carnum }} 대 </p>
+        {% comment %} 5톤 대수 {% endcomment %}
+      </div>
+      <div class="auto-group-mwwv-EMf">
+        <p class="ton--zLq">11 ton :</p>
+        <p class="item-5--iXj"> {{ load_data.ele_carnum }} 대</p>
+        {% comment %} 11톤 대수 {% endcomment %}
+      </div>
+    </div>
+    <p class="total-TVK">TOTAL</p>
+    <div class="auto-group-6czx-ZoF">
+      <p class="item-6780000000-h8m">￦6,780,000,000</p>
+      {% comment %} 총 합계 {% endcomment %}
+      <div class="rectangle-Ao3">
+      </div>
+    </div>
+  </div>
+  <div class="auto-group-cc5f-V4d">
+    <p class="item--jDs">단가</p>
+    <p class="item--Deq">품명</p>
+    <p class="item--817">합계</p>
+    <p class="item--2sB">수량</p>
+    <p class="item--Xow">품명</p>
 
-        </tr>
-        {% endfor %}
-        <tr>
-            <td>UNIT 소계</td>
-            <td></td>
-            <td>\ {{ subtotal_unit|floatformat:"0"|intcomma }}</td>
-            <td>\ {{ subtotal_totals|floatformat:"0"|intcomma }}</td>
-        </tr>
-    </table>
-    <button onclick="goBack()">이전</button>
+    <div class="rectangle-rmf">
+    </div>
+    <p class="al-spcc--Nzu">
+    자재비 (AL, SPCC 외)
+    <br/>
+    
+    </p>
+    <p class="item-1-TWZ">
+    1
+    {% comment %} 자재비 수량 {% endcomment %}
+    <br/>
+    
+    </p>
+    <p class="item-760000-xy7">￦760,000</p>
+    {% comment %} 자재비 단가 {% endcomment %}
+    <p class="item-3000000-529">￦3,000,000</p>
+    {% comment %} 자재비 합계 {% endcomment %}
+    <p class="item-2-y7X">2</p>
+    {% comment %} 도장비 수량 {% endcomment %}
+    <p class="item-760000-sCu">￦760,000</p>
+    {% comment %} 도장비 단가 {% endcomment %}
+    <p class="item-3000000-Jp1">￦3,000,000</p>
+    {% comment %} 도장비 합계 {% endcomment %}
+    <p class="item-3-M1b">3</p>
+    {% comment %} nct 수량 {% endcomment %}
+    <p class="item-760000-SYq">￦760,000</p>
+    {% comment %} nct 단가 {% endcomment %}
+    <p class="item-3000000-wEh">￦3,000,000</p>
+    {% comment %} nct 합계 {% endcomment %}
+    <p class="item-4-ddK">4</p>
+    {% comment %} 모터 수량 {% endcomment %}
+    <p class="item-760000-8a5">￦760,000</p>
+    {% comment %} 모터 단가 {% endcomment %}
+    <p class="item-3000000-d13">￦3,000,000</p>
+    {% comment %} 모터 합계 {% endcomment %}
+    <p class="item-5-hWh">5</p>
+    {% comment %} 컨트롤러 수량 {% endcomment %}
+    <p class="item-7-11b">7</p>
+    {% comment %} 벨마우스 수량 {% endcomment %}
+    <p class="item-760000-6Hw">￦770,000</p>
+    {% comment %} 벨마우스 단가 {% endcomment %}
+    <p class="item-3000000-BKP">￦3,100,000</p>
+    {% comment %} 벨마우스 합계 {% endcomment %}
+    <p class="item-8-SFK">8</p>
+    {% comment %} 볼트 리벳 수량 {% endcomment %}
+    <p class="item-760000-8dw">￦790,000</p>
+    {% comment %} 볼트 리벳 단가 {% endcomment %}
+    <p class="item-3000000-cp1">￦3,000,000</p>
+    {% comment %} 볼트 리벳 합계 {% endcomment %}
+    <p class="item-10-WPb">10</p>
+    {% comment %} 조립인건비 수량 {% endcomment %}
+    <p class="item-760000-pQH">￦560,000</p>
+    {% comment %} 조립인건비 단가 {% endcomment %}
+    <p class="item-3000000-7uB">￦2,000,000</p>
+    {% comment %} 조립인건비 합계 {% endcomment %}
+    <p class="item-11-pob">11</p>
+    {% comment %} 포장팔렛트 수량 {% endcomment %}
+    <p class="item-760000-j9s">￦760,000</p>
+    {% comment %} 포장팔렛트 단가 {% endcomment %}
+    <p class="item-3000000-qih">￦3,000,000</p>
+    {% comment %} 포장팔렛트 합계 {% endcomment %}
+    <p class="item--YND">-</p>
+    <p class="item-760000-SCh">￦770,000</p>
+    {% comment %} 운반비 단가 {% endcomment %}
+    <p class="item-3000000-977">￦3,000,000</p>
+    {% comment %} 운반비 합계 {% endcomment %}
+    <p class="item-13-3iH">13</p>
+    {% comment %} 필터 수량 {% endcomment %}
+    <p class="item-760000-Zgd">￦760,000</p>
+    {% comment %} 필터 단가 {% endcomment %}
+    <p class="item-3000000-sSR">￦3,000,000</p>
+    {% comment %} 필터 합계 {% endcomment %}
+    <p class="item-14-yVT">14</p>
+    {% comment %} 관리비 수량 {% endcomment %}
+    <p class="item-760000-tMX">￦760,000</p>
+    {% comment %} 관리비 단가 {% endcomment %}
+    <p class="item-3000000-bFw">￦3,000,000</p>
+    {% comment %} 관리비 합계 {% endcomment %}
+    <p class="item-15-6iV">15</p>
+    {% comment %} 영업이익 수량 {% endcomment %}
+    <p class="item-760000-peV">￦760,000</p>
+    {% comment %} 영업이익 단가 {% endcomment %}
+    <p class="item-3000000-8v5">￦3,000,000</p>
+    {% comment %} 영업이익 합계 {% endcomment %}
+    <p class="item-760000-rbB">￦800,000</p>
+    {% comment %} 컨트롤러 단가 {% endcomment %}
+    <p class="item-3000000-Arm">￦9,000,000</p>
+    {% comment %} 컨트롤러 합계 {% endcomment %}
+    <p class="item-6-UMf">6</p>
+    {% comment %} 팬 수량 {% endcomment %}
+    <p class="item-760000-aQh">￦730,000</p>
+    {% comment %} 팬 단가 {% endcomment %}
+    <p class="item-3000000-5sF">￦3,000,000</p>
+    {% comment %} 팬 합계 {% endcomment %}
+    <p class="item--bKo">단가</p>
+    <p class="item--ubP">합계</p>
+    <p class="item--CqP">수량</p>
+    <p class="item-9-Kf7">9</p>
+    {% comment %} 포장용잡자재 수량 {% endcomment %}
+    <p class="item-760000-1nq">￦760,000</p>
+    {% comment %} 포장용잡자재 단가 {% endcomment %}
+    <p class="item-3000000-Jmw">￦3,000,000</p>
+    {% comment %} 포장용 잡자재 합계 {% endcomment %}
+    <p class="item--oih">포장용 잡자재</p>
+    <p class="item--u13">조립인건비</p>
+    <p class="item--nad">포장팔렛트 </p>
+    <p class="item--fuK">운반비<span class="tooltip">TRANSPORTATION 참고</span></p>
+    <p class="filter-xtR">FILTER</p>
+    <p class="item--sVb">관리비 </p>
+    <p class="item--ZdK">영업이익 </p>
+    <p class="item--GXj">도장비 </p>
+    <p class="nct--yS9">NCT 가공비</p>
+    <p class="motor-HSq">MOTOR</p>
+    <p class="fan-C41">FAN</p>
+    <p class="item--Voo">컨트롤러</p>
+    <p class="bellmouth--Bgd">BELLMOUTH (보호망 포함)</p>
+    <p class="item--gNV">볼트 &amp; 리벳</p>
+  </div>
+  <div class="auto-group-xxjb-xqo">
+    <img class="item-1-Gbb" src="{% static 'images/-6TB.png' %}"/>
+    <div class="button-ABB" onclick="downloadExcel()" style="user-select: none;">
+      <img class="iconly-5ow" src="{% static 'images/iconly-Hof.png' %}"/>
+      <div class="button-D9T">Excel</div>
+    </div>
+  </div>
+</div>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+<script>
+  function downloadExcel() {
+    var excelURL = "{% url 'download_excel' %}";
+    window.location.href = excelURL;
+  }
+</script>
+
+<script>
+  function goBack() {
+    var backURL = "http://127.0.0.1:8000/ffu/FFUInput/";
+    window.location.href = backURL;
+  }
+</script>
 </body>
-</html>
-

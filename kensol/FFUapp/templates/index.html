@@ -1,12 +1,168 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>케이엔솔 견적서 계산 홈페이지</title>
-</head>
-<body>
-    <h1>추가 예정</h1>
-    <a href="/ffu/FFUInput">FFU 견적서</a>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>kensol homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/youtube-background@1.0.14/jquery.youtube-background.min.js"></script>
+    <style>
+      
+      .navbar {
+        background-image: url('data:image/jpeg;base64,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'); 
+        background-size: 100% 1400%;
+        background-repeat : no-repeat;
+      }
+
+      .navbar-brand {
+        margin-left: 20px; 
+        margin-top: 1px;
+        font-size: 23px;
+        font-weight: 500;
+        color: #FFF;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        align-items: center;
+      }
+
+      .navbar-brand img {
+        margin-right: 9px; 
+      }
+
+      .nav-item.dropdown {
+        font-size: 16px;
+        font-weight: 500;
+        color: #FFF;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 3px;
+      }
+
+      .dropdown-item {
+        font-size: 14px;
+        font-weight: 500;
+        color: #FFF;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 3px;
+      }
+      .nav-link {
+        color: #FFF !important;
+      }
+
+      .text-center {
+        margin-top: 250px;
+      }
+      .custom-heading {
+        font-size: 55px;
+        color:white;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+
+      }
+      
+      .custom-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-weight: bold;
+        color: white;
+        border: 2px solid white;
+        border-radius: 25px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 20px;
+      }
+
+      .custom-button:hover {
+        background-color: #FFFFFF;
+        color : #000000;
+      }
+
+      .custom-mid{
+        font-family: 'Poppins', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        color:white;
+      }
+
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+      .youtube-background {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+
+      .content {
+        position: relative;
+        z-index: 1; /* 콘텐츠를 유튜브 동영상 위에 배치 */
+      }
+
+
+    </style>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+  </script>
+
+  </head>
+
+  <body>
+    <div class="content">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="https://cdn-icons-png.flaticon.com/128/7257/7257807.png" alt="Icon" width="30" height="30">
+            Fan Filter Unit
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Type
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="#">FFU</a></li>
+                  <li><a class="dropdown-item" href="#">EFU</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <figure class="text-center">
+      <blockquote class="blockquote">
+        <h1 class="custom-heading">Quotation Automation System</h1>
+      </blockquote >
+        <p class='custom-mid'>designed to make it easy for you to calculate the quotation.</p>
+        <a href="/ffu/FFUDashboard/" class="custom-button">Get Started</a>
+    </figure>
+  </div>
+  <div class="youtube-background"
+    data-vbg-autoplay="true"
+    data-vbg="https://youtu.be/72cG6iPLs-c"></div>
+
+    <script>
+    $(document).ready(function() {
+    $('[data-vbg]').youtube_background(); // 실행
+    });
+    </script>
+
+  </body>
 </html>

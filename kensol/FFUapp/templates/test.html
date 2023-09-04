@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <h1>LoadQuantity에서 가져온 각 carsize별 ea</h1>
+    <p>1ton: {{ carsize_ea.1ton }}</p>
+    <p>5ton: {{ carsize_ea.5ton }}</p>
+    <p>11ton: {{ carsize_ea.11ton }}</p>
+    
+    <form method="post" action="{% url 'test' %}">
+        {% csrf_token %}
+        <input type="text" name="location" placeholder="Location">
+        <input type="text" name="selected_size" placeholder="Selected Size"> <!-- 이 부분 추가 -->
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>
