@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from FFUapp.models.Motor_models import GenMotor, HighMotor
 
-def calculate_motor_price(size, spec, motortype, motor_company, watt):
+def calculate_motor_price(size, spec, motortype, ph):
     try:    
         if spec == "일반사양":
             model = GenMotor
@@ -13,8 +13,7 @@ def calculate_motor_price(size, spec, motortype, motor_company, watt):
         motor = model.objects.filter(
             size=size,
             motortype=motortype, 
-            motor_company=motor_company, 
-            watt=watt
+            ph=ph
         ).first() 
 
         if motor:

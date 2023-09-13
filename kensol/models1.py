@@ -8,6 +8,116 @@
 from django.db import models
 
 
+class AAssembly(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, assembly_price) found, that is not supported. The first column is selected.
+    assembly_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_assembly'
+        unique_together = (('size', 'assembly_price'),)
+
+
+class ABellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
+class AController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    controller_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_controller'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class AFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_fan'
+        unique_together = (('size', 'motortype'),)
+
+
+class AFilter(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, filterstyle) found, that is not supported. The first column is selected.
+    filterstyle = models.CharField(max_length=16)
+    filterpressure = models.CharField(max_length=16)
+    filter_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_filter'
+        unique_together = (('size', 'filterstyle'),)
+
+
+class AJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_jab'
+
+
+class AMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_motor'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class ANct(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    nct_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_nct'
+
+
+class APack(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, pack_price) found, that is not supported. The first column is selected.
+    pack_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_pack'
+        unique_together = (('size', 'pack_price'),)
+
+
+class AVolt(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
+    volt_name = models.CharField(max_length=50)
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'a_volt'
+        unique_together = (('size', 'volt_name'),)
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -77,6 +187,336 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class BAssembly(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, assembly_price) found, that is not supported. The first column is selected.
+    assembly_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_assembly'
+        unique_together = (('size', 'assembly_price'),)
+
+
+class BBellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
+class BController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    controller_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_controller'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class BFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_fan'
+        unique_together = (('size', 'motortype'),)
+
+
+class BFilter(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, filterstyle) found, that is not supported. The first column is selected.
+    filterstyle = models.CharField(max_length=16)
+    filterpressure = models.CharField(max_length=16)
+    filter_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_filter'
+        unique_together = (('size', 'filterstyle'),)
+
+
+class BJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_jab'
+
+
+class BMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_motor'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class BNct(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    nct_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_nct'
+
+
+class BPack(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, pack_price) found, that is not supported. The first column is selected.
+    pack_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_pack'
+        unique_together = (('size', 'pack_price'),)
+
+
+class BVolt(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
+    volt_name = models.CharField(max_length=50)
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'b_volt'
+        unique_together = (('size', 'volt_name'),)
+
+
+class CAssembly(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, assembly_price) found, that is not supported. The first column is selected.
+    assembly_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_assembly'
+        unique_together = (('size', 'assembly_price'),)
+
+
+class CBellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
+class CController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    controller_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_controller'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class CFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_fan'
+        unique_together = (('size', 'motortype'),)
+
+
+class CFilter(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, filterstyle) found, that is not supported. The first column is selected.
+    filterstyle = models.CharField(max_length=16)
+    filterpressure = models.CharField(max_length=16)
+    filter_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_filter'
+        unique_together = (('size', 'filterstyle'),)
+
+
+class CJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_jab'
+
+
+class CMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_motor'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class CNct(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    nct_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_nct'
+
+
+class CPack(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, pack_price) found, that is not supported. The first column is selected.
+    pack_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_pack'
+        unique_together = (('size', 'pack_price'),)
+
+
+class CVolt(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
+    volt_name = models.CharField(max_length=50)
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'c_volt'
+        unique_together = (('size', 'volt_name'),)
+
+
+class DAssembly(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, assembly_price) found, that is not supported. The first column is selected.
+    assembly_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_assembly'
+        unique_together = (('size', 'assembly_price'),)
+
+
+class DBellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
+class DController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    controller_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_controller'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class DFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_fan'
+        unique_together = (('size', 'motortype'),)
+
+
+class DFilter(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, filterstyle) found, that is not supported. The first column is selected.
+    filterstyle = models.CharField(max_length=16)
+    filterpressure = models.CharField(max_length=16)
+    filter_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_filter'
+        unique_together = (('size', 'filterstyle'),)
+
+
+class DJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_jab'
+
+
+class DMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_motor'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class DNct(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    nct_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_nct'
+
+
+class DPack(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, pack_price) found, that is not supported. The first column is selected.
+    pack_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_pack'
+        unique_together = (('size', 'pack_price'),)
+
+
+class DVolt(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
+    volt_name = models.CharField(max_length=50)
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'd_volt'
+        unique_together = (('size', 'volt_name'),)
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -122,6 +562,129 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
+class EAssembly(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, assembly_price) found, that is not supported. The first column is selected.
+    assembly_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_assembly'
+        unique_together = (('size', 'assembly_price'),)
+
+
+class EBellmouth(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    bellmouth_size = models.CharField(max_length=16)
+    bellmouth_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_bellmouth'
+        unique_together = (('size', 'motortype'),)
+
+
+class EController(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    controller_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_controller'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class EFan(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, motortype) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=50)
+    fan_size = models.CharField(max_length=16)
+    fan_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_fan'
+        unique_together = (('size', 'motortype'),)
+
+
+class EFilter(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, filterstyle) found, that is not supported. The first column is selected.
+    filterstyle = models.CharField(max_length=16)
+    filterpressure = models.CharField(max_length=16)
+    filter_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_filter'
+        unique_together = (('size', 'filterstyle'),)
+
+
+class EJab(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    jab_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_jab'
+
+
+class EMotor(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
+    motortype = models.CharField(max_length=16)
+    ph = models.CharField(max_length=32)
+    motor_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_motor'
+        unique_together = (('size', 'motortype', 'ph'),)
+
+
+class ENct(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)
+    nct_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_nct'
+
+
+class EPack(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, pack_price) found, that is not supported. The first column is selected.
+    pack_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_pack'
+        unique_together = (('size', 'pack_price'),)
+
+
+class EVolt(models.Model):
+    size = models.CharField(primary_key=True, max_length=50)  # The composite primary key (size, volt_name) found, that is not supported. The first column is selected.
+    volt_name = models.CharField(max_length=50)
+    volt_price = models.FloatField()
+    volt_count = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'e_volt'
+        unique_together = (('size', 'volt_name'),)
+
+
+class Ffilter(models.Model):
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, filterstyle, filterpressure, windspeed) found, that is not supported. The first column is selected.
+    filterstyle = models.CharField(max_length=16)
+    filterpressure = models.CharField(max_length=16)
+    windspeed = models.CharField(max_length=16)
+    filter_price = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'ffilter'
+        unique_together = (('size', 'filterstyle', 'filterpressure', 'windspeed'),)
+
+
 class GenAssembly(models.Model):
     size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, assembly_price) found, that is not supported. The first column is selected.
     assembly_price = models.IntegerField()
@@ -145,16 +708,15 @@ class GenBellmouth(models.Model):
 
 
 class GenController(models.Model):
-    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
     motortype = models.CharField(max_length=16)
-    motor_company = models.CharField(max_length=32)
-    watt = models.CharField(max_length=32)
+    ph = models.CharField(max_length=32)
     controller_price = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'gen_controller'
-        unique_together = (('size', 'motor_company'),)
+        unique_together = (('size', 'motortype', 'ph'),)
 
 
 class GenFan(models.Model):
@@ -196,16 +758,15 @@ class GenMaterialcost(models.Model):
 
 
 class GenMotor(models.Model):
-    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
     motortype = models.CharField(max_length=16)
-    motor_company = models.CharField(max_length=32)
-    watt = models.CharField(max_length=32)
+    ph = models.CharField(max_length=32)
     motor_price = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'gen_motor'
-        unique_together = (('size', 'motor_company'),)
+        unique_together = (('size', 'motortype', 'ph'),)
 
 
 class GenNct(models.Model):
@@ -276,16 +837,15 @@ class HighBellmouth(models.Model):
 
 
 class HighController(models.Model):
-    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company) found, that is not supported. The first column is selected.
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
     motortype = models.CharField(max_length=16)
-    motor_company = models.CharField(max_length=32)
-    watt = models.CharField(max_length=32)
+    ph = models.CharField(max_length=32)
     controller_price = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'high_controller'
-        unique_together = (('size', 'motor_company'),)
+        unique_together = (('size', 'motortype', 'ph'),)
 
 
 class HighFan(models.Model):
@@ -327,16 +887,15 @@ class HighMaterialcost(models.Model):
 
 
 class HighMotor(models.Model):
-    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motor_company, watt) found, that is not supported. The first column is selected.
+    size = models.CharField(primary_key=True, max_length=16)  # The composite primary key (size, motortype, ph) found, that is not supported. The first column is selected.
     motortype = models.CharField(max_length=16)
-    motor_company = models.CharField(max_length=32)
-    watt = models.CharField(max_length=32)
+    ph = models.CharField(max_length=32)
     motor_price = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'high_motor'
-        unique_together = (('size', 'motor_company', 'watt'),)
+        unique_together = (('size', 'motortype', 'ph'),)
 
 
 class HighNct(models.Model):

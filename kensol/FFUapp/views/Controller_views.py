@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from FFUapp.models.Controller_models import GenController, HighController
 
-def calculate_controller_price(size, spec, motortype, motor_company, watt):
+def calculate_controller_price(size, spec, motortype, ph):
     try:    
         if spec == "일반사양":
             model = GenController
@@ -13,8 +13,7 @@ def calculate_controller_price(size, spec, motortype, motor_company, watt):
         controller = model.objects.filter(
             size=size,
             motortype=motortype, 
-            motor_company=motor_company, 
-            watt=watt
+            ph=ph
         ).first() 
 
         if controller:

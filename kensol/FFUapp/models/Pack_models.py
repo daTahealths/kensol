@@ -10,10 +10,10 @@ class GenPack(models.Model):
         unique_together = (('size', 'pack_price'),)
 
 class HighPack(models.Model):
-    pack_price = models.IntegerField()                             
-    size = models.CharField(primary_key=True, max_length=16)        
-    
+    size = models.CharField(primary_key=True, max_length=16)
+    pack_price = models.IntegerField()
+
     class Meta:
-        managed = True
+        managed = False
         db_table = 'high_pack'
         unique_together = (('size', 'pack_price'),)

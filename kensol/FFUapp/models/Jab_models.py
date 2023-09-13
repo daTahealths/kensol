@@ -13,5 +13,5 @@ class HighJab(models.Model):
     jab_price = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'high_jab'

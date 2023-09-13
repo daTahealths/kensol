@@ -10,9 +10,9 @@ class GenNct(models.Model):
 
 
 class HighNct(models.Model):
-    size = models.CharField(primary_key=True, max_length=16)       
-    nct_price = models.IntegerField()                                 
+    size = models.CharField(primary_key=True, max_length=16)
+    nct_price = models.IntegerField()
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'high_nct'
