@@ -387,7 +387,7 @@
     <form id="ffuForm" action="/ffu/FFUInput/" method="post">
         {% csrf_token %}
 
-        <h3>FFU 견적 산출하는 페이지입니다.</h3><br>
+        <h3>FFU 견적 의뢰서</h3><br>
 
 
         <div class="container">
@@ -485,8 +485,8 @@
         <label for="filterstyle">필터 종류
           <br>
             <select id="filterstyle" name="filterstyle">
-                <option value="HEPA">HEPA</option>
                 <option value="ULPA">ULPA</option>
+                <option value="HEPA">HEPA</option>
             </select>
         </label><br><br>
       </div>
@@ -504,19 +504,14 @@
         </label><br><br>
       </div>
 
-    </div>
+      </div>
 
       <div class="parent">
         <div class="first-box">
         <label for="windSpeed">풍량/풍속
           <br>
           <div class="wind-container">
-              <select id="windSpeed" name="windSpeed">
-                <option value="0.35m/s">0.35m/s</option>
-                <option value="0.4m/s">0.4m/s</option>
-                <option value="0.7m/s">0.7m/s</option>
-                <option value="0.8m/s">0.8m/s</option>
-            </select>
+            <input type="number" step="0.01" id="windSpeed" name="windSpeedValue" autocomplete="off" />
             <select id="windSpeedUnit" name="windSpeedUnit">
                 <option value="ms">m/s</option>
                 <option value="cmm">cmm</option>
@@ -524,7 +519,10 @@
           </div>
         </label><br><br>
       </div>
-    
+
+
+      
+      
       <div class="first-box">
         <label for="pressure">기외 정압 (mmAq)
           <br>
@@ -532,7 +530,7 @@
         </label><br><br>
       </div>
     
-      <div class="first-box">
+<!--       <div class="first-box">
         <label for="spec">사양
           <br>
             <select id="spec" name="spec">
@@ -540,7 +538,7 @@
                 <option value="고사양">고사양</option>
             </select>
         </label><br><br>
-      </div>
+      </div> -->
 
     </div>
 
@@ -570,11 +568,107 @@
         </button>
       </div>  
     
-        
+
     </form>
 
+    <script>
+      // 선택된 size별 motortype과 filterpressure 통제, 선택된 motortype별 ph 통제
+      document.addEventListener('DOMContentLoaded', function() {
+          let sizeDropdown = document.getElementById('size');
+          let motorTypeDropdown = document.getElementById('motortype');
 
+          sizeDropdown.addEventListener('change', function() {
+              updateFilterPressureOptions();
+              updateMotorTypeOptions();
+          });
 
+          motorTypeDropdown.addEventListener('change', function() {
+              updatePhOptions();
+          });
+
+          function updateFilterPressureOptions() {
+              let filterPressureDropdown = document.getElementById('filterpressure');
+              let selectedSize = sizeDropdown.value;
+
+              let filterPressureOptions = {
+                  '1200*1200': ['8.5mmAq', '9.5mmAq'],
+                  '1200*600': ['8.5mmAq', '9.5mmAq'],
+                  '1320*750': ['10.5mmAq', '13.5mmAq'],
+                  '1500*1300': ['8.5mmAq', '11.8mmAq'],
+                  '1500*1320': ['10.5mmAq', '13.5mmAq'],
+                  '1500*650': ['8.5mmAq', '11.8mmAq']
+              };
+
+              filterPressureDropdown.innerHTML = '';
+              for(let optionValue of filterPressureOptions[selectedSize] || []) {
+                  let option = document.createElement('option');
+                  option.value = optionValue;
+                  option.innerText = optionValue;
+                  filterPressureDropdown.appendChild(option);
+              }
+          }
+
+          function updateMotorTypeOptions() {
+              let selectedSize = sizeDropdown.value;
+
+              let motorTypeOptions = {
+                  '1200*1200': ['BLDC', 'AC'],
+                  '1200*600': ['BLDC', 'AC'],
+                  '1500*1300': ['BLDC', 'AC'],
+                  '1500*1320': ['BLDC'],
+                  '1320*750': [],
+                  '1500*650': []
+              };
+
+              motorTypeDropdown.innerHTML = '';
+              for(let optionValue of motorTypeOptions[selectedSize] || []) {
+                  let option = document.createElement('option');
+                  option.value = optionValue;
+                  option.innerText = optionValue;
+                  motorTypeDropdown.appendChild(option);
+              }
+              updatePhOptions(); 
+          }
+
+          function updatePhOptions() {
+              let phDropdown = document.getElementById('ph');
+              let selectedMotorType = motorTypeDropdown.value;
+
+              let phOptions = {
+                  'BLDC': ['1PH'],
+                  'AC': ['1PH', '3PH']
+              };
+
+              phDropdown.innerHTML = '';
+              for(let optionValue of phOptions[selectedMotorType] || []) {
+                  let option = document.createElement('option');
+                  option.value = optionValue;
+                  option.innerText = optionValue;
+                  phDropdown.appendChild(option);
+              }
+          }
+          updateFilterPressureOptions();
+          updateMotorTypeOptions();
+          updatePhOptions();
+      });
+
+      // spec 값을 설정하는 로직
+      document.getElementById('ffuForm').addEventListener('submit', function(event) {
+          const windSpeed = parseFloat(document.getElementById('windSpeed').value);
+          const pressure = parseFloat(document.getElementById('pressure').value);
+          let specValue = '일반사양';
+          if (windSpeed >= 0.4 && pressure >= 14) {
+              specValue = '고사양';
+          }
+          const specInput = document.createElement('input');
+          specInput.type = 'hidden';
+          specInput.name = 'spec';
+          specInput.value = specValue;
+          this.appendChild(specInput);
+      });
+    </script>
+
+  
 
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

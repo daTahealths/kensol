@@ -30,7 +30,6 @@ BELLMOUTH = "BELLMOUTH (보호망포함)"
 일반사양 = "일반사양"
 고사양 = "고사양"
 
-
 # OUTPUT 항목과 연관된 변수
 def get_price_for_item(item_name, size, spec, ph, quantity=None, motortype=None, location=None, filterpressure=None, filterstyle=None, **kwargs):
     try:
